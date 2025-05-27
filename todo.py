@@ -9,9 +9,8 @@ class TodoGUI:
         self.root = root
         self.root.title("To-Do List App")
         self.root.geometry("600x400")
-        self.root.resizable(True, True)  # Just in case we want resizing later
+        self.root.resizable(True, True)  
         
-        # Some style tweaks — mostly cosmetic
         self.style = ttk.Style()
         self.style.configure('TFrame', background='#f0f0f0')
         self.style.configure('TButton', font=('Arial', 10), padding=5)
@@ -83,7 +82,6 @@ class TodoGUI:
         wipe_btn.pack(side=tk.LEFT, padx=5)
 
     def _load_from_file(self):
-        # Let's try loading from the local JSON file
         if os.path.isfile(self.data_file):
             with open(self.data_file, 'r') as file:
                 self.task_list = json.load(file)
@@ -91,7 +89,6 @@ class TodoGUI:
             self.task_list = []
 
     def _save_to_file(self):
-        # Could add error handling here in the future
         with open(self.data_file, 'w') as f:
             json.dump(self.task_list, f, indent=4)
 
@@ -102,7 +99,7 @@ class TodoGUI:
             return
 
         new_task = {
-            'id': len(self.task_list) + 1,  # Could break if we delete middle items, but it's fine for now
+            'id': len(self.task_list) + 1,  
             'description': text,
             'created': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             'completed': False
@@ -137,7 +134,6 @@ class TodoGUI:
         item = self.tree.item(selected[0])
         selected_id = item['values'][0]
 
-        # Could use a dictionary for quicker lookup, but let's keep it simple
         for task in self.task_list:
             if task['id'] == selected_id:
                 if task.get('completed'):
@@ -150,7 +146,7 @@ class TodoGUI:
                 messagebox.showinfo("Success", "Task marked as completed.")
                 return
 
-        messagebox.showerror("Error", "Hmm, couldn’t find the task to mark.")
+        messagebox.showerror("Error", "Hmm, couldn't find the task to mark.")
 
     def remove_task(self):
         selected = self.tree.selection()
@@ -162,7 +158,6 @@ class TodoGUI:
         target_id = item['values'][0]
 
         if messagebox.askyesno("Confirm", "Delete this task?"):
-            # Using index to delete, not the most robust way
             for idx, task in enumerate(self.task_list):
                 if task['id'] == target_id:
                     del self.task_list[idx]
