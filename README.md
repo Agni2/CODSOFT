@@ -1,1 +1,7 @@
 # CODSOFT
+
+1st Task :- TO-DO LIST
+
+2nd Task :- CALCULATOR
+
+3rd Task :- PASSWORD GENERATOR
