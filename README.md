@@ -1,6 +1,6 @@
 # CODSOFT
 
-1st Task :- TO-DO LIST
+1st Task :- TO-DO LIST(todo)
 
 2nd Task :- CALCULATOR
 
